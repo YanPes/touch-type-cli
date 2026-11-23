@@ -1,0 +1,5 @@
+{
+	"_comment": "Project Gutenberg ebook ids (public domain) used to train the pseudo-word models.",
+	"en": [1342, 11, 84, 1661, 98, 74, 345],
+	"de": [22367, 34811, 2403, 7205, 6498]
+}

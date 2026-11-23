@@ -1,0 +1,51 @@
+{
+	"name": "touch-type-cli",
+	"version": "0.1.0",
+	"description": "A keybr-style adaptive touch-typing trainer for the terminal. Fully offline.",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"ttc": "./dist/cli.mjs"
+	},
+	"files": [
+		"dist"
+	],
+	"engines": {
+		"node": ">=22"
+	},
+	"keywords": [
+		"typing",
+		"touch-typing",
+		"keybr",
+		"cli",
+		"tui",
+		"ink"
+	],
+	"scripts": {
+		"dev": "tsx src/cli.tsx",
+		"build": "tsdown",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"model:fetch": "bash scripts/fetch-corpus.sh",
+		"model:build": "tsx scripts/build-model.ts",
+		"prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+	},
+	"dependencies": {
+		"ink": "^8.0.0",
+		"react": "^19.3.1",
+		"zod": "^4.6.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.6.8",
+		"@types/node": "^26.6.6",
+		"@types/react": "^19.3.0",
+		"ink-testing-library": "^4.0.0",
+		"tsdown": "^0.23.7",
+		"tsx": "^4.23.15",
+		"typescript": "^7.0.2",
+		"vitest": "^5.1.1"
+	}
+}
