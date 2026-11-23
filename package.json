@@ -41,7 +41,10 @@
 		"format": "biome check --write .",
 		"model:fetch": "bash scripts/fetch-corpus.sh",
 		"model:build": "tsx scripts/build-model.ts",
-		"prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+		"prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+		"release": "npm version -m \"Release v%s\"",
+		"preversion": "[ \"$(git branch --show-current)\" = main ] || { echo \"release from main only\"; exit 1; }; pnpm lint && pnpm typecheck && pnpm test",
+		"postversion": "git push --follow-tags"
 	},
 	"dependencies": {
 		"ink": "^8.0.0",
