@@ -3,6 +3,15 @@
 	"version": "0.1.0",
 	"description": "A keybr-style adaptive touch-typing trainer for the terminal. Fully offline.",
 	"license": "MIT",
+	"author": "YanPes",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YanPes/touch-type-cli.git"
+	},
+	"homepage": "https://github.com/YanPes/touch-type-cli#readme",
+	"bugs": {
+		"url": "https://github.com/YanPes/touch-type-cli/issues"
+	},
 	"type": "module",
 	"bin": {
 		"ttc": "./dist/cli.mjs"
@@ -48,5 +57,6 @@
 		"tsx": "^4.23.15",
 		"typescript": "^7.0.2",
 		"vitest": "^5.1.1"
-	}
+	},
+	"packageManager": "pnpm@11.8.0"
 }

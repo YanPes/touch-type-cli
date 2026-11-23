@@ -14,6 +14,14 @@ meetings.
 
 ## Install
 
+Try it without installing:
+
+```sh
+npx touch-type-cli
+```
+
+Or install it globally to get the `ttc` command:
+
 ```sh
 npm install -g touch-type-cli   # or: pnpm add -g touch-type-cli
 ttc
@@ -119,3 +127,15 @@ The model's letter frequency also defines the unlock order.
 ## License
 
 MIT
+
+## Releasing
+
+Releases are published to npm by `.github/workflows/publish.yml` when a `v*` tag
+is pushed, using npm trusted publishing (no token stored in GitHub).
+
+```sh
+npm version patch   # bumps package.json, commits, tags vX.Y.Z
+git push --follow-tags
+```
+
+The workflow fails if the tag does not match the `package.json` version.
