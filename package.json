@@ -1,6 +1,6 @@
 {
 	"name": "touch-type-cli",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A keybr-style adaptive touch-typing trainer for the terminal. Fully offline.",
 	"license": "MIT",
 	"author": "YanPes",
