@@ -55,9 +55,9 @@ describe("App", () => {
 		stdin.write(ENTER); // Layout
 		await tick();
 		expect(saveConfig).toHaveBeenLastCalledWith(
-			expect.objectContaining({ layout: "de-qwertz" }),
+			expect.objectContaining({ layout: "us-dvorak" }),
 		);
-		expect(lastFrame()).toContain("DE QWERTZ");
+		expect(lastFrame()).toContain("US Dvorak");
 		stdin.write(DOWN);
 		await tick();
 		stdin.write(ENTER); // Uppercase

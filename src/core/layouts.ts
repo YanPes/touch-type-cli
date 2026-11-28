@@ -1,8 +1,19 @@
 import type { LanguageId } from "./languages.ts";
 
-export const LAYOUT_IDS = ["us-qwerty", "de-qwertz"] as const;
+export const LAYOUT_IDS = [
+	"us-qwerty",
+	"us-dvorak",
+	"us-colemak",
+	"de-qwertz",
+] as const;
 export type LayoutId = (typeof LAYOUT_IDS)[number];
 
+/**
+ * ttc reads characters, not physical key positions: the OS keyboard layout
+ * maps keys to letters before they reach the terminal. A layout here therefore
+ * picks the practice language and keeps its own progress profile, while the
+ * user switches their OS to the same layout.
+ */
 export interface Layout {
 	id: LayoutId;
 	label: string;
@@ -18,6 +29,18 @@ export const LAYOUTS: Record<LayoutId, Layout> = {
 		label: "US QWERTY",
 		language: "en",
 		rows: ["qwertyuiop", "asdfghjkl", "zxcvbnm"],
+	},
+	"us-dvorak": {
+		id: "us-dvorak",
+		label: "US Dvorak",
+		language: "en",
+		rows: ["pyfgcrl", "aoeuidhtns", "qjkxbmwvz"],
+	},
+	"us-colemak": {
+		id: "us-colemak",
+		label: "US Colemak",
+		language: "en",
+		rows: ["qwfpgjluy", "arstdhneio", "zxcvbkm"],
 	},
 	"de-qwertz": {
 		id: "de-qwertz",

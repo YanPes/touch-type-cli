@@ -53,7 +53,7 @@ describe("config", () => {
 		const path = join(dir, ".ttcrc");
 		writeFileSync(path, "{ nope");
 		expect(() => loadConfig(path)).toThrow(ConfigError);
-		writeFileSync(path, JSON.stringify({ layout: "dvorak" }));
+		writeFileSync(path, JSON.stringify({ layout: "workman" }));
 		expect(() => loadConfig(path)).toThrow(/layout/);
 	});
 });

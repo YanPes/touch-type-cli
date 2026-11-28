@@ -58,12 +58,21 @@ speed. The focus key is highlighted, and a key flashes red when you miss it.
 
 ## Layouts
 
-| Layout      | Practice language | Letters         |
-| ----------- | ----------------- | --------------- |
-| `us-qwerty` | English           | a–z             |
-| `de-qwertz` | German            | a–z, ä, ö, ü, ß |
+| Layout       | Practice language | Letters         |
+| ------------ | ----------------- | --------------- |
+| `us-qwerty`  | English           | a–z             |
+| `us-dvorak`  | English           | a–z             |
+| `us-colemak` | English           | a–z             |
+| `de-qwertz`  | German            | a–z, ä, ö, ü, ß |
 
-Each layout has its own progress.
+Each layout has its own progress, so learning Dvorak or Colemak starts fresh
+without touching your QWERTY stats.
+
+ttc reads the characters your terminal receives, so **switch your operating
+system's keyboard layout** to the one you practise (e.g. Dvorak in macOS
+Input Sources or `setxkbmap us -variant dvorak`). The practice words are the
+same English pseudo-words on every English layout, and letters unlock by how
+common they are in English, not by where they sit on the keyboard.
 
 ## Configuration
 
@@ -83,7 +92,7 @@ Each layout has its own progress.
 
 | Key             | Meaning                                                                      |
 | --------------- | ---------------------------------------------------------------------------- |
-| `layout`        | `us-qwerty` or `de-qwertz`                                                   |
+| `layout`        | `us-qwerty`, `us-dvorak`, `us-colemak` or `de-qwertz`                        |
 | `targetWpm`     | Speed every unlocked key must reach before the next letter unlocks           |
 | `startLetters`  | How many of the most frequent letters you start with                         |
 | `stopOnError`   | `true` blocks on a wrong key until you type the right one                    |

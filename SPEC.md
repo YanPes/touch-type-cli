@@ -32,14 +32,16 @@ Progress is kept per layout profile. Env overrides `TTC_CONFIG` and
 ## Main menu
 
 - Modes: **Free** (first/default), **10 minutes**, **20 minutes**
-- Settings: Layout (US QWERTY / DE QWERTZ), Uppercase, Stop on error —
+- Settings: Layout (US QWERTY / US Dvorak / US Colemak / DE QWERTZ), Uppercase, Stop on error —
   changes are written back to `~/.ttcrc`
 - Reset progress (current layout, with confirmation)
 - Quit
 
 ## Adaptive engine
 
-- Layout determines the language: US QWERTY → English, DE QWERTZ → German.
+- Layout determines the language: US QWERTY, US Dvorak and US Colemak →
+  English, DE QWERTZ → German. ttc reads characters, so the user sets the same
+  layout in their OS; letters unlock by language frequency on every layout.
 - Text: pseudo-words from a letter-level n-gram (Markov) model with backoff,
   built ahead of time from public-domain text and committed as data.
 - Lowercase letters only; German includes `ä ö ü ß`.
