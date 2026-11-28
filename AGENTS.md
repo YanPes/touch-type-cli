@@ -37,14 +37,14 @@ Run `pnpm lint && pnpm typecheck && pnpm test` before committing.
 
 ## Code layout
 
-| Path              | Contents                                                       |
-| ----------------- | -------------------------------------------------------------- |
-| `src/cli.tsx`     | Argument parsing, TTY/size checks, starts the Ink app          |
+| Path              | Contents                                                                         |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `src/cli.tsx`     | Argument parsing, TTY/size checks, starts the Ink app                            |
 | `src/core/`       | Pure logic: layouts, languages, n-gram models, generator, stats, trainer, typing |
-| `src/ui/`         | Ink components (menu, typing screen, summary, key strip)       |
-| `src/storage/`    | Config and progress files (zod schemas, atomic JSON writes)    |
-| `src/data/models` | Prebuilt letter n-gram models (`en.json`, `de.json`)           |
-| `scripts/`        | Corpus download and model build (dev only)                     |
+| `src/ui/`         | Ink components (menu, typing screen, summary, key strip)                         |
+| `src/storage/`    | Config and progress files (zod schemas, atomic JSON writes)                      |
+| `src/data/models` | Prebuilt letter n-gram models (`en.json`, `de.json`)                             |
+| `scripts/`        | Corpus download and model build (dev only)                                       |
 
 Keep `src/core` free of I/O and UI so it stays unit-testable; the UI keeps the
 trainer state and calls the pure functions.
