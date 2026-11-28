@@ -8,6 +8,8 @@ export const configSchema = z.object({
 	targetWpm: z.number().int().min(5).max(250).default(35),
 	/** Number of most frequent letters to start with. */
 	startLetters: z.number().int().min(2).max(30).default(6),
+	/** Unlock the layout's home-row letters before any others. */
+	homeRowFirst: z.boolean().default(false),
 	stopOnError: z.boolean().default(false),
 	uppercase: z.boolean().default(false),
 	showTypedChar: z.boolean().default(false),

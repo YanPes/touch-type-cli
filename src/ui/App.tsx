@@ -1,7 +1,7 @@
 import { Box, Text, useApp, useInput, useWindowSize } from "ink";
 import { useRef, useState } from "react";
 import { LAYOUTS } from "../core/layouts.ts";
-import { getModel } from "../core/models.ts";
+import { getLayoutModel } from "../core/models.ts";
 import type { Rng } from "../core/rng.ts";
 import { unlockedLetters } from "../core/stats.ts";
 import { totalsAccuracy, totalsWpm } from "../core/typing.ts";
@@ -86,7 +86,7 @@ export function App({
 	const [message, setMessage] = useState(notice);
 
 	const layout = LAYOUTS[config.layout];
-	const model = getModel(layout.language);
+	const model = getLayoutModel(config.layout, config.homeRowFirst);
 	const profile = getProfile(progress, config.layout);
 
 	const updateProfile = (change: (profile: Profile) => Profile) => {

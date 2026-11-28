@@ -39,7 +39,7 @@ ttc 20     # 20 minute session
 ```
 
 **Menu:** ↑/↓ (or j/k) to move, Enter to select, ←/→ to change a setting,
-q to quit. Layout, uppercase and stop-on-error changes are saved to your config.
+q to quit. Setting changes are saved to your config.
 
 **While typing:** just type. `Esc` ends the session and shows a summary. Timed
 sessions finish the current line when time is up. Progress is saved after every
@@ -58,12 +58,28 @@ speed. The focus key is highlighted, and a key flashes red when you miss it.
 
 ## Layouts
 
-| Layout      | Practice language | Letters         |
-| ----------- | ----------------- | --------------- |
-| `us-qwerty` | English           | a–z             |
-| `de-qwertz` | German            | a–z, ä, ö, ü, ß |
+| Layout       | Practice language | Letters         |
+| ------------ | ----------------- | --------------- |
+| `us-qwerty`  | English           | a–z             |
+| `us-dvorak`  | English           | a–z             |
+| `us-colemak` | English           | a–z             |
+| `de-qwertz`  | German            | a–z, ä, ö, ü, ß |
 
-Each layout has its own progress.
+Each layout has its own progress, so learning Dvorak or Colemak starts fresh
+without touching your QWERTY stats.
+
+ttc reads the characters your terminal receives, so **switch your operating
+system's keyboard layout** to the one you practise (e.g. Dvorak in macOS
+Input Sources or `setxkbmap us -variant dvorak`). The practice words are the
+same English pseudo-words on every English layout.
+
+By default letters unlock by how common they are in the language. Turn on
+**Home row first** in the menu to start on the layout's home row instead
+(`asdfghjkl` on QWERTY, `aoeuidhtns` on Dvorak, `arstdhneio` on Colemak),
+most frequent first, then the remaining letters by frequency. This is the
+easiest way in if you are new to touch typing or to a layout. Switching it
+on an existing profile keeps your key stats but changes which letters count
+as unlocked.
 
 ## Configuration
 
@@ -74,6 +90,7 @@ Each layout has its own progress.
 	"layout": "us-qwerty",
 	"targetWpm": 35,
 	"startLetters": 6,
+	"homeRowFirst": false,
 	"stopOnError": false,
 	"uppercase": false,
 	"showTypedChar": false,
@@ -83,9 +100,10 @@ Each layout has its own progress.
 
 | Key             | Meaning                                                                      |
 | --------------- | ---------------------------------------------------------------------------- |
-| `layout`        | `us-qwerty` or `de-qwertz`                                                   |
+| `layout`        | `us-qwerty`, `us-dvorak`, `us-colemak` or `de-qwertz`                        |
 | `targetWpm`     | Speed every unlocked key must reach before the next letter unlocks           |
 | `startLetters`  | How many of the most frequent letters you start with                         |
+| `homeRowFirst`  | `true` unlocks the layout's home-row letters before any others               |
 | `stopOnError`   | `true` blocks on a wrong key until you type the right one                    |
 | `uppercase`     | Capitalise about 20% of words to practise Shift                              |
 | `showTypedChar` | Show the character you actually typed (in red) instead of the expected one   |
@@ -105,37 +123,13 @@ locations. Delete the files to start over, or use "Reset progress" in the menu.
 
 ```sh
 pnpm install
-pnpm dev          # run from source
-pnpm test         # vitest
-pnpm lint         # biome
-pnpm typecheck
-pnpm build        # bundle to dist/ with tsdown
+pnpm dev     # run from source
+pnpm test
 ```
 
-### Pseudo-word models
-
-`src/data/models/{en,de}.json` are letter n-gram models built from public-domain
-Project Gutenberg books listed in `scripts/corpus.json`. To rebuild them:
-
-```sh
-pnpm model:fetch  # downloads the books into ./corpus (git-ignored)
-pnpm model:build
-```
-
-The model's letter frequency also defines the unlock order.
+See [AGENTS.md](AGENTS.md) for the design constraints, code layout, how the
+pseudo-word models are built and how releases work.
 
 ## License
 
 MIT
-
-## Releasing
-
-Releases are published to npm by `.github/workflows/publish.yml` when a `v*` tag
-is pushed, using npm trusted publishing (no token stored in GitHub).
-
-```sh
-npm version patch   # bumps package.json, commits, tags vX.Y.Z
-git push --follow-tags
-```
-
-The workflow fails if the tag does not match the `package.json` version.

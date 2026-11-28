@@ -55,9 +55,16 @@ describe("App", () => {
 		stdin.write(ENTER); // Layout
 		await tick();
 		expect(saveConfig).toHaveBeenLastCalledWith(
-			expect.objectContaining({ layout: "de-qwertz" }),
+			expect.objectContaining({ layout: "us-dvorak" }),
 		);
-		expect(lastFrame()).toContain("DE QWERTZ");
+		expect(lastFrame()).toContain("US Dvorak");
+		stdin.write(DOWN);
+		await tick();
+		stdin.write(ENTER); // Home row first
+		await tick();
+		expect(saveConfig).toHaveBeenLastCalledWith(
+			expect.objectContaining({ homeRowFirst: true }),
+		);
 		stdin.write(DOWN);
 		await tick();
 		stdin.write(ENTER); // Uppercase
@@ -128,7 +135,7 @@ describe("App", () => {
 	it("resets progress only after confirmation", async () => {
 		const { stdin, lastFrame, saveProgress } = setup();
 		await tick();
-		for (let i = 0; i < 6; i++) {
+		for (let i = 0; i < 7; i++) {
 			stdin.write(DOWN);
 			await tick();
 		}
@@ -138,7 +145,7 @@ describe("App", () => {
 		stdin.write("n");
 		await tick();
 		expect(saveProgress).not.toHaveBeenCalled();
-		for (let i = 0; i < 6; i++) {
+		for (let i = 0; i < 7; i++) {
 			stdin.write(DOWN);
 			await tick();
 		}

@@ -7,13 +7,18 @@ import { MODES, type Mode, modeLabel } from "./session.ts";
 type Item =
 	| { kind: "mode"; mode: Mode }
 	| { kind: "layout" }
-	| { kind: "toggle"; key: "uppercase" | "stopOnError"; label: string }
+	| {
+			kind: "toggle";
+			key: "homeRowFirst" | "uppercase" | "stopOnError";
+			label: string;
+	  }
 	| { kind: "reset" }
 	| { kind: "quit" };
 
 const ITEMS: Item[] = [
 	...MODES.map((mode): Item => ({ kind: "mode", mode })),
 	{ kind: "layout" },
+	{ kind: "toggle", key: "homeRowFirst", label: "Home row first" },
 	{ kind: "toggle", key: "uppercase", label: "Uppercase" },
 	{ kind: "toggle", key: "stopOnError", label: "Stop on error" },
 	{ kind: "reset" },
@@ -21,7 +26,7 @@ const ITEMS: Item[] = [
 ];
 
 /** Items after which a separator line is drawn. */
-const SEPARATE_AFTER = new Set([MODES.length - 1, MODES.length + 2]);
+const SEPARATE_AFTER = new Set([MODES.length - 1, MODES.length + 3]);
 
 interface Props {
 	config: Config;

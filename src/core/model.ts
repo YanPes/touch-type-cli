@@ -9,7 +9,10 @@ export const WORD_BOUNDARY = " ";
 export interface NgramModel {
 	language: LanguageId;
 	order: number;
-	/** The language's letters, most frequent first — this is also the unlock order. */
+	/**
+	 * The language's letters, most frequent first. This is the unlock order,
+	 * unless a layout reorders it (see `getLayoutModel`).
+	 */
 	letters: string[];
 	/**
 	 * context (0..order chars, boundary-padded) → next char → count.
