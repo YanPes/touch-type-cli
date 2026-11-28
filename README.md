@@ -123,37 +123,13 @@ locations. Delete the files to start over, or use "Reset progress" in the menu.
 
 ```sh
 pnpm install
-pnpm dev          # run from source
-pnpm test         # vitest
-pnpm lint         # biome
-pnpm typecheck
-pnpm build        # bundle to dist/ with tsdown
+pnpm dev     # run from source
+pnpm test
 ```
 
-### Pseudo-word models
-
-`src/data/models/{en,de}.json` are letter n-gram models built from public-domain
-Project Gutenberg books listed in `scripts/corpus.json`. To rebuild them:
-
-```sh
-pnpm model:fetch  # downloads the books into ./corpus (git-ignored)
-pnpm model:build
-```
-
-The model's letter frequency also defines the unlock order.
+See [AGENTS.md](AGENTS.md) for the design constraints, code layout, how the
+pseudo-word models are built and how releases work.
 
 ## License
 
 MIT
-
-## Releasing
-
-Releases are published to npm by `.github/workflows/publish.yml` when a `v*` tag
-is pushed, using npm trusted publishing (no token stored in GitHub).
-
-```sh
-npm version patch   # bumps package.json, commits, tags vX.Y.Z
-git push --follow-tags
-```
-
-The workflow fails if the tag does not match the `package.json` version.
