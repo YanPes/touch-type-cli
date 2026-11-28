@@ -32,7 +32,8 @@ Progress is kept per layout profile. Env overrides `TTC_CONFIG` and
 ## Main menu
 
 - Modes: **Free** (first/default), **10 minutes**, **20 minutes**
-- Settings: Layout (US QWERTY / US Dvorak / US Colemak / DE QWERTZ), Uppercase, Stop on error —
+- Settings: Layout (US QWERTY / US Dvorak / US Colemak / DE QWERTZ), Home row
+  first, Uppercase, Stop on error —
   changes are written back to `~/.ttcrc`
 - Reset progress (current layout, with confirmation)
 - Quit
@@ -41,7 +42,9 @@ Progress is kept per layout profile. Env overrides `TTC_CONFIG` and
 
 - Layout determines the language: US QWERTY, US Dvorak and US Colemak →
   English, DE QWERTZ → German. ttc reads characters, so the user sets the same
-  layout in their OS; letters unlock by language frequency on every layout.
+  layout in their OS.
+- Unlock order: language letter frequency, or with `homeRowFirst` the layout's
+  home-row letters first (by frequency), then the rest (by frequency).
 - Text: pseudo-words from a letter-level n-gram (Markov) model with backoff,
   built ahead of time from public-domain text and committed as data.
 - Lowercase letters only; German includes `ä ö ü ß`.
@@ -83,4 +86,4 @@ keys) and then return to the menu. Progress is saved after every line.
 ## Later
 
 Stats screen (history is already recorded), punctuation & numbers, more
-layouts/languages, home-row start mode.
+layouts/languages, layout emulation (remap keys while the OS stays on QWERTY).

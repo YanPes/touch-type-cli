@@ -39,7 +39,7 @@ ttc 20     # 20 minute session
 ```
 
 **Menu:** ↑/↓ (or j/k) to move, Enter to select, ←/→ to change a setting,
-q to quit. Layout, uppercase and stop-on-error changes are saved to your config.
+q to quit. Setting changes are saved to your config.
 
 **While typing:** just type. `Esc` ends the session and shows a summary. Timed
 sessions finish the current line when time is up. Progress is saved after every
@@ -71,8 +71,15 @@ without touching your QWERTY stats.
 ttc reads the characters your terminal receives, so **switch your operating
 system's keyboard layout** to the one you practise (e.g. Dvorak in macOS
 Input Sources or `setxkbmap us -variant dvorak`). The practice words are the
-same English pseudo-words on every English layout, and letters unlock by how
-common they are in English, not by where they sit on the keyboard.
+same English pseudo-words on every English layout.
+
+By default letters unlock by how common they are in the language. Turn on
+**Home row first** in the menu to start on the layout's home row instead
+(`asdfghjkl` on QWERTY, `aoeuidhtns` on Dvorak, `arstdhneio` on Colemak),
+most frequent first, then the remaining letters by frequency. This is the
+easiest way in if you are new to touch typing or to a layout. Switching it
+on an existing profile keeps your key stats but changes which letters count
+as unlocked.
 
 ## Configuration
 
@@ -83,6 +90,7 @@ common they are in English, not by where they sit on the keyboard.
 	"layout": "us-qwerty",
 	"targetWpm": 35,
 	"startLetters": 6,
+	"homeRowFirst": false,
 	"stopOnError": false,
 	"uppercase": false,
 	"showTypedChar": false,
@@ -95,6 +103,7 @@ common they are in English, not by where they sit on the keyboard.
 | `layout`        | `us-qwerty`, `us-dvorak`, `us-colemak` or `de-qwertz`                        |
 | `targetWpm`     | Speed every unlocked key must reach before the next letter unlocks           |
 | `startLetters`  | How many of the most frequent letters you start with                         |
+| `homeRowFirst`  | `true` unlocks the layout's home-row letters before any others               |
 | `stopOnError`   | `true` blocks on a wrong key until you type the right one                    |
 | `uppercase`     | Capitalise about 20% of words to practise Shift                              |
 | `showTypedChar` | Show the character you actually typed (in red) instead of the expected one   |

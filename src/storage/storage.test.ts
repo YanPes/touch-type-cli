@@ -29,6 +29,7 @@ describe("config", () => {
 			layout: "us-qwerty",
 			targetWpm: 35,
 			startLetters: 6,
+			homeRowFirst: false,
 		});
 	});
 

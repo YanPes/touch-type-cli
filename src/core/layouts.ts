@@ -19,8 +19,26 @@ export interface Layout {
 	label: string;
 	/** Practice language — pseudo-words follow this language's letter statistics. */
 	language: LanguageId;
-	/** Letter rows, top to bottom (kept for a future keyboard diagram). */
+	/** Letter rows, top to bottom. The second row is the home row. */
 	rows: readonly string[];
+}
+
+/**
+ * The order letters unlock in. By default that is the language's frequency
+ * order; with `homeRowFirst` the layout's home-row letters come first (still
+ * most frequent first), followed by the rest in frequency order.
+ */
+export function unlockOrder(
+	frequencyOrder: readonly string[],
+	layout: Layout,
+	homeRowFirst: boolean,
+): string[] {
+	if (!homeRowFirst) return [...frequencyOrder];
+	const home = new Set(layout.rows[1] ?? "");
+	return [
+		...frequencyOrder.filter((c) => home.has(c)),
+		...frequencyOrder.filter((c) => !home.has(c)),
+	];
 }
 
 export const LAYOUTS: Record<LayoutId, Layout> = {
